@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en-US" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg" href="./assets/logo-7d266e45.svg" />
+
+    <title>Baetcoin - A token for CATS</title>
+    <script src="./assets/flowbite.js"></script>
+
+    <script>
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+    <link rel="stylesheet" href="./assets/index-c0a69cf0.css" />
+  </head>
+
+  <body class="bg-white dark:bg-gray-800">
+    <!----Nav start----->
+
+    <header>
+      <nav
+        class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800"
+      >
+        <div
+          class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl"
+        >
+          <a href="#" class="flex items-center">
+            <img
+              src="./assets/logo-7d266e45.svg"
+              class="mr-3 h-6 sm:h-9"
+              alt="Baetcoin Logo"
+            />
+            <span
+              class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
+              >Baetcoin</span
+            >
+          </a>
+          <div class="flex items-center lg:order-2">
+            <button
+              id="theme-toggle"
+              type="button"
+              class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+            >
+              <svg
+                id="theme-toggle-dark-icon"
+                class="hidden w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                ></path>
+              </svg>
+              <svg
+                id="theme-toggle-light-icon"
+                class="hidden w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+
+            <button
+              data-collapse-toggle="mobile-menu-2"
+              type="button"
+              class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              aria-controls="mobile-menu-2"
+              aria-expanded="false"
+            >
+              <span class="sr-only">Open main menu</span>
+              <svg
+                class="w-6 h-6"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <svg
+                class="hidden w-6 h-6"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div
+            class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
+            id="mobile-menu-2"
+          >
+            <ul
+              class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0"
+            >
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
+                  aria-current="page"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#about"
+                  class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#tokenomics"
+                  class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                  >Tokenomics</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-----Nav end------>
+    <!---Header Start----->
+    <section class="bg-white dark:bg-gray-900">
+      <div
+        class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12"
+      >
+        <div class="mr-auto place-self-center lg:col-span-7">
+          <h1
+            class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white"
+          >
+            BAET Token - created for people who love cats.
+          </h1>
+          <p
+            class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400"
+          >
+            The greatest meme token ever created on a blockchain.
+          </p>
+          <a
+            href="#about"
+            class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+          >
+            About
+            <svg
+              class="w-5 h-5 ml-2 -mr-1"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </a>
+          <a
+            href="#contact"
+            class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+          >
+            Speak to Team
+          </a>
+        </div>
+        <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+          <img src="./assets/342-53ad8c38.png" alt="mockup" />
+        </div>
+      </div>
+    </section>
+    <!---Header ENd------->
+
+    <!---FAQ---->
+    <section class="bg-white dark:bg-gray-900">
+      <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+        <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8 hidden">
+          <h2
+            class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+          >
+            Our Blog
+          </h2>
+          <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">
+            We use an agile approach to test assumptions and connect with the
+            needs of your audience early and often.
+          </p>
+        </div>
+        <div class="grid gap-8 lg:grid-cols-2" id="about">
+          <article
+            class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+          >
+            <div class="flex justify-between items-center mb-5 text-gray-500">
+              <span
+                class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800"
+              >
+                <svg
+                  class="mr-1 w-3 h-3"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+                    clip-rule="evenodd"
+                  ></path>
+                  <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path>
+                </svg>
+
+                Question
+              </span>
+              <span class="text-sm hidden">69 days ago</span>
+            </div>
+            <h2
+              class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+            >
+              <span>What is BAET Token?</span>
+            </h2>
+            <p class="mb-5 font-light text-gray-500 dark:text-gray-400">
+              BAET Token is a meme token. Unlike other meme tokens such as DOGE,
+              our community is developing genuine use-cases.
+            </p>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center space-x-4">
+                <img
+                  class="w-7 h-7 rounded-full"
+                  src="./assets/cat1-5dc32637.png"
+                  alt="cat"
+                />
+                <span class="font-medium dark:text-white"> Mr Dev Cat</span>
+              </div>
+            </div>
+          </article>
+          <article
+            class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+          >
+            <div class="flex justify-between items-center mb-5 text-gray-500">
+              <span
+                class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800"
+              >
+                <svg
+                  class="mr-1 w-3 h-3"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+                    clip-rule="evenodd"
+                  ></path>
+                  <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path>
+                </svg>
+                Question
+              </span>
+              <span class="text-sm hidden">69 days ago</span>
+            </div>
+            <h2
+              class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+            >
+              <span>What makes BAET Token different?</span>
+            </h2>
+            <p class="mb-5 font-light text-gray-500 dark:text-gray-400">
+              What really separates BAET Token from the rest of the meme tokens?
+              Well, our mission is to create NFT trading cards of BAETs. Cool,
+              right! Our loving cat community will also focus our efforts to
+              save cats that have been abandoned and find loving homes for them,
+              as each and every cat should be loved.
+            </p>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center space-x-4">
+                <img
+                  class="w-7 h-7 rounded-full"
+                  src="./assets/cat2-bb061263.png"
+                  alt="cat meow meow"
+                />
+                <span class="font-medium dark:text-white"> Meow Cat </span>
+              </div>
+            </div>
+          </article>
+          <article
+            class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+          >
+            <div class="flex justify-between items-center mb-5 text-gray-500">
+              <span
+                class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800"
+              >
+                <svg
+                  class="mr-1 w-3 h-3"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+                    clip-rule="evenodd"
+                  ></path>
+                  <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path>
+                </svg>
+                Article
+              </span>
+              <span class="text-sm hidden">69 days ago</span>
+            </div>
+            <h2
+              class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+            >
+              <span>Why should you join the BAET Token family?</span>
+            </h2>
+            <p class="mb-5 font-light text-gray-500 dark:text-gray-400">
+              We truly believe BAET token is an extremely unique community. It’s
+              unique only because of the extraordinary people turning our ideas
+              into reality. We’re on a serious mission to make a difference. We
+              hope you join us!
+            </p>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center space-x-4">
+                <img
+                  class="w-7 h-7 rounded-full"
+                  src="./assets/cat3-0a2e50dd.png"
+                  alt="Bonnie Green avatar"
+                />
+                <span class="font-medium dark:text-white"> Mr Meow</span>
+              </div>
+            </div>
+          </article>
+          <article
+            class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+          >
+            <div class="flex justify-between items-center mb-5 text-gray-500">
+              <span
+                class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800"
+              >
+                <svg
+                  class="mr-1 w-3 h-3"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+                    clip-rule="evenodd"
+                  ></path>
+                  <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path>
+                </svg>
+                Article
+              </span>
+              <span class="text-sm hidden">69 days ago</span>
+            </div>
+            <h2
+              class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+            >
+              <span>Do BAET accepts job apply?</span>
+            </h2>
+            <p class="mb-5 font-light text-gray-500 dark:text-gray-400">
+              Please contact our support team for more information.
+            </p>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center space-x-4">
+                <img
+                  class="w-7 h-7 rounded-full"
+                  src="./assets/cat1-5dc32637.png"
+                  alt="cat"
+                />
+                <span class="font-medium dark:text-white">Mr Dev Cat </span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!---END FAQ---->
+    <!----Blog start---->
+    <section class="bg-white dark:bg-gray-900">
+      <div
+        class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6"
+      >
+        <img
+          class="w-full dark:hidden"
+          src="./assets/catM-7bc63666.png"
+          alt="cat"
+        />
+        <img
+          class="w-full hidden dark:block"
+          src="./assets/catM-7bc63666.png"
+          alt="dashboard image"
+        />
+        <div class="mt-4 md:mt-0">
+          <h2
+            class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+          >
+            Saving cats and creating cat memes are our core focus!
+          </h2>
+          <p
+            class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400"
+          >
+            Cats have always been treated poorly by the general public. Now,
+            even wild cats are considered as pests. To solve this problem and to
+            let people understand the seriousness of this issue, BAET token was
+            born. Profits generated from the pancakeswap exchange will be sent
+            to cat saving organisations.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!----Blog end---->
+    <!---Tokenomics---->
+    <section class="bg-white dark:bg-gray-900" id="tokenomics">
+      <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+        <div class="max-w-screen-md mb-8 lg:mb-16">
+          <h2
+            class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+          >
+            A total of 15 million BAET token is to be ever distributed. 45%
+            53.5%
+          </h2>
+        </div>
+        <section class="bg-white dark:bg-gray-900">
+          <div
+            class="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6"
+          >
+            <dl
+              class="grid max-w-screen-md gap-8 mx-auto text-gray-900 sm:grid-cols-4 dark:text-white"
+            >
+              <div class="flex flex-col items-center justify-center">
+                <dt class="mb-2 text-3xl md:text-4xl font-extrabold">3M</dt>
+                <dd class="font-light text-gray-500 dark:text-gray-400">
+                  developers
+                </dd>
+              </div>
+              <div class="flex flex-col items-center justify-center">
+                <dt class="mb-2 text-3xl md:text-4xl font-extrabold">5M</dt>
+                <dd class="font-light text-gray-500 dark:text-gray-400">
+                  pancakeswap
+                </dd>
+              </div>
+              <div class="flex flex-col items-center justify-center">
+                <dt class="mb-2 text-3xl md:text-4xl font-extrabold">4M</dt>
+                <dd class="font-light text-gray-500 dark:text-gray-400">
+                  burn
+                </dd>
+              </div>
+              <div class="flex flex-col items-center justify-center">
+                <dt class="mb-2 text-3xl md:text-4xl font-extrabold">3M</dt>
+                <dd class="font-light text-gray-500 dark:text-gray-400">
+                  marketing
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+      </div>
+    </section>
+    <!----Tokenomics end--->
+    <!---Blog2 start---->
+    <section class="bg-white dark:bg-gray-900">
+      <div
+        class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6"
+      >
+        <div class="mt-4 md:mt-0">
+          <h2
+            class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+          >
+            Future developments - To Be Updated:
+          </h2>
+          <p
+            class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400"
+          >
+            Add support for more centralized and decentralized exchanges; Create
+            a trollbox on our website; Token Migration to ETH 2.0 AND BSC (To be
+            announced); NFT trading cards backed by BAET tokens! Helping BAETs
+            across the world in need of shelter by supporting NGO's dediBAETed
+            for BAETs. Stay tuned! There's more to come!
+          </p>
+        </div>
+        <img
+          class="w-full dark:hidden"
+          src="./assets/cat6-73ed37f9.png"
+          alt="cat"
+        />
+        <img
+          class="w-full hidden dark:block"
+          src="./assets/cat6-73ed37f9.png"
+          alt="dashboard image"
+        />
+      </div>
+    </section>
+    <!----Blog2 end---->
+    <!----Whitepaper btn---->
+    <section class="bg-white dark:bg-gray-900">
+      <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+        <div class="mx-auto max-w-screen-sm text-center">
+          <a
+            href="#"
+            class="inline-flex p-5 text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900 my-4"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-5 h-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"
+              />
+            </svg>
+            BAET TOKEN WHITEPAPER</a
+          >
+        </div>
+      </div>
+    </section>
+    <!----Whitepaper btn end--->
+    <!---Partners start---->
+    <section class="bg-white dark:bg-gray-900">
+      <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+        <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
+          <h2
+            class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+          >
+            Our Partners
+          </h2>
+        </div>
+        <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
+          <div
+            class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
+          >
+            <a href="#">
+              <img
+                class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
+                src="./assets/pancake-bae96bf0.webp"
+                alt="pancakeswap"
+              />
+            </a>
+            <div class="p-5">
+              <h3
+                class="text-xl font-bold tracking-tight text-gray-900 dark:text-white"
+              >
+                <a href="#">Pancakeswap</a>
+              </h3>
+
+              <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
+                Our DEX Exchange partner where you can swap for BAET token.
+              </p>
+            </div>
+          </div>
+          <div
+            class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
+          >
+            <a href="#">
+              <img
+                class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
+                src="./assets/gecko-8b479c01.png"
+                alt="Michael Avatar"
+              />
+            </a>
+            <div class="p-5">
+              <h3
+                class="text-xl font-bold tracking-tight text-gray-900 dark:text-white"
+              >
+                <a href="#">Coingecko</a>
+              </h3>
+
+              <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
+                Coingecko our token listing and status partner for information
+                about BAET token.
+              </p>
+            </div>
+          </div>
+          <div
+            class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
+          >
+            <a href="#">
+              <img
+                class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
+                src="data:image/png;base64,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"
+                alt="cmc"
+              />
+            </a>
+            <div class="p-5">
+              <h3
+                class="text-xl font-bold tracking-tight text-gray-900 dark:text-white"
+              >
+                <a href="#">Coinmarketcap</a>
+              </h3>
+              <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
+                Our another listing partner like Coingecko.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!----Partners end---->
+    <!---Teams---->
+    <section class="bg-white dark:bg-gray-900">
+      <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+        <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
+          <h2
+            class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+          >
+            Our Team
+          </h2>
+          <p
+            class="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400"
+          >
+            Please let us present the team members of BAET Token!
+          </p>
+        </div>
+        <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
+          <div
+            class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
+          >
+            <a href="#">
+              <img
+                class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
+                src="./assets/cat1-5dc32637.png"
+                alt="Jerry BAET"
+              />
+            </a>
+            <div class="p-5">
+              <h3
+                class="text-xl font-bold tracking-tight text-gray-900 dark:text-white"
+              >
+                <a href="#">Jerry BAET</a>
+              </h3>
+              <span class="text-gray-500 dark:text-gray-400"
+                >Community Leader
+              </span>
+              <ul class="flex space-x-4 sm:mt-0">
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                  >
+                    <svg
+                      class="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                      />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
+          >
+            <a href="#">
+              <img
+                class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
+                src="./assets/cat2-bb061263.png"
+                alt="Sick BAET"
+              />
+            </a>
+            <div class="p-5">
+              <h3
+                class="text-xl font-bold tracking-tight text-gray-900 dark:text-white"
+              >
+                <a href="#">Sick BAET</a>
+              </h3>
+              <span class="text-gray-500 dark:text-gray-400">owner </span>
+              <ul class="flex space-x-4 sm:mt-0">
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                  >
+                    <svg
+                      class="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                      />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
+          >
+            <a href="#">
+              <img
+                class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
+                src="./assets/cat3-0a2e50dd.png"
+                alt="Phil BAET"
+              />
+            </a>
+            <div class="p-5">
+              <h3
+                class="text-xl font-bold tracking-tight text-gray-900 dark:text-white"
+              >
+                <a href="#">Phil BAET</a>
+              </h3>
+              <span class="text-gray-500 dark:text-gray-400"
+                >Marketing Manager
+              </span>
+              <ul class="flex space-x-4 sm:mt-0">
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                  >
+                    <svg
+                      class="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                      />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!---Teams end----->
+    <!----Testimonial start--->
+    <section class="bg-white dark:bg-gray-900">
+      <div
+        class="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6"
+      >
+        <figure class="max-w-screen-md mx-auto">
+          <svg
+            class="h-12 mx-auto mb-3 text-gray-400 dark:text-gray-600"
+            viewBox="0 0 24 27"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z"
+              fill="currentColor"
+            />
+          </svg>
+          <blockquote>
+            <p class="text-2xl font-medium text-gray-900 dark:text-white">
+              "Join our growing community for help and support and to find out
+              more."
+            </p>
+          </blockquote>
+          <figcaption class="flex items-center justify-center mt-6 space-x-3">
+            <img
+              class="w-6 h-6 rounded-full"
+              src="./assets/cat2-bb061263.png"
+              alt="owner"
+            />
+            <div
+              class="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700"
+            >
+              <div class="pr-3 font-medium text-gray-900 dark:text-white">
+                Sick BAET
+              </div>
+              <div
+                class="pl-3 text-sm font-light text-gray-500 dark:text-gray-400"
+              >
+                CEO at BAET
+              </div>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+    <!-----Testimonial end--->
+    <!---Contact---->
+    <section class="bg-white dark:bg-gray-900" id="contact">
+      <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+        <h2
+          class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white"
+        >
+          Contact Us
+        </h2>
+        <p
+          class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl"
+        >
+          Got a suggestion, query or request? Want to send feedback about a beta
+          feature? ? Let us know.
+        </p>
+        <form
+          action="#"
+          class="space-y-8"
+          method="post"
+          autocomplete="off"
+          id="contactForm"
+        >
+          <div>
+            <label
+              for="email"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >Your email</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+              placeholder="john.doe@example.com"
+              required
+            />
+          </div>
+          <div>
+            <label
+              for="subject"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >Subject</label
+            >
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+              placeholder="Let us know how we can help you"
+              required
+            />
+          </div>
+          <div class="sm:col-span-2">
+            <label
+              for="message"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+              >Your message</label
+            >
+            <textarea
+              id="message"
+              rows="6"
+              name="message"
+              class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              placeholder="Leave a comment..."
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+            disabled
+          >
+            Send message
+          </button>
+        </form>
+      </div>
+    </section>
+    <!----Contact end---->
+    <!---Footer start---->
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger
+      chat-title="Baetcoin"
+      agent-id="747bd22d-81c4-4998-9efd-ce9c04ddcea6"
+      language-code="en"
+    ></df-messenger>
+    <footer class="p-4 bg-white sm:p-6 dark:bg-gray-800">
+      <div class="mx-auto max-w-screen-xl">
+        <div class="md:flex md:justify-between">
+          <div class="mb-6 md:mb-0">
+            <a href="#" class="flex items-center">
+              <img
+                src="./assets/logo-7d266e45.svg"
+                class="mr-3 h-8"
+                alt="Baetcoin Logo"
+              />
+              <span
+                class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+                >Baetcoin</span
+              >
+            </a>
+          </div>
+          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+            <div>
+              <h2
+                class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
+              >
+                Resources
+              </h2>
+              <ul class="text-gray-600 dark:text-gray-400">
+                <li class="mb-4">
+                  <a href="#" class="hover:underline">Baetcoin</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:underline">Whitepaper</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2
+                class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
+              >
+                Follow us
+              </h2>
+              <ul class="text-gray-600 dark:text-gray-400">
+                <li class="mb-4">
+                  <a
+                    href="https://twitter.com/realBaetcoin"
+                    class="hover:underline"
+                    >Twiiter</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://telegram.dog/Baetcoin"
+                    class="hover:underline"
+                    >Telegram</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2
+                class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
+              >
+                Legal
+              </h2>
+              <ul class="text-gray-600 dark:text-gray-400">
+                <li class="mb-4">
+                  <a href="#" class="hover:underline">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <hr
+          class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"
+        />
+        <div class="sm:flex sm:items-center sm:justify-between">
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
+            >© 2022 <a href="#" class="hover:underline">Baetcoin™</a>. All
+            Rights Reserved.
+          </span>
+          <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
+            <a
+              href="https://telegram.dog/baetcoin"
+              target="_blank"
+              class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+            >
+              <svg fill="currentColor" class="w-7 h-7" viewBox="0 0 24 24">
+                <path
+                  fill-rule="evenodd"
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+
+            <a
+              href="https://twitter.com/realBaetcoin"
+              target="_blank"
+              class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://github.com/baetcoin"
+              target="_blank"
+              class="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!----Footer End---->
+    <script>
+      //Theme toogle
+      var themeToggleDarkIcon = document.getElementById(
+        "theme-toggle-dark-icon"
+      );
+      var themeToggleLightIcon = document.getElementById(
+        "theme-toggle-light-icon"
+      );
+
+      // Change the icons inside the button based on previous settings
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        themeToggleLightIcon.classList.remove("hidden");
+      } else {
+        themeToggleDarkIcon.classList.remove("hidden");
+      }
+
+      var themeToggleBtn = document.getElementById("theme-toggle");
+
+      themeToggleBtn.addEventListener("click", function () {
+        // toggle icons inside button
+        themeToggleDarkIcon.classList.toggle("hidden");
+        themeToggleLightIcon.classList.toggle("hidden");
+
+        // if set via local storage previously
+        if (localStorage.getItem("color-theme")) {
+          if (localStorage.getItem("color-theme") === "light") {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("color-theme", "dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("color-theme", "light");
+          }
+
+          // if NOT set via local storage previously
+        } else {
+          if (document.documentElement.classList.contains("dark")) {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("color-theme", "light");
+          } else {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("color-theme", "dark");
+          }
+        }
+      });
+
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          alert("Not working");
+        });
+    </script>
+  </body>
+</html>
